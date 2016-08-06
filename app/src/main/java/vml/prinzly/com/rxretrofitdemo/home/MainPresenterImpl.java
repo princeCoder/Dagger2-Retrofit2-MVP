@@ -25,7 +25,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnFetchC
     @Override
     public void fetchData() {
         //I will call the interactor here
-        //@Todo Let the interactor do the job
         mainInteractor.fetchData(this);
     }
 

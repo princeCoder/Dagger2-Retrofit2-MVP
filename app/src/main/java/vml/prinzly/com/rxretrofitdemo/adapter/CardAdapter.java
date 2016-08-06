@@ -9,6 +9,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import vml.prinzly.com.rxretrofitdemo.R;
 import vml.prinzly.com.rxretrofitdemo.model.Github;
 
@@ -55,15 +57,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView login;
-        public TextView repos;
-        public TextView blog;
+        @BindView(R.id.login) TextView login;
+        @BindView(R.id.repos) TextView repos;
+        @BindView(R.id.blog) TextView blog;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            login = (TextView) itemView.findViewById(R.id.login);
-            repos = (TextView) itemView.findViewById(R.id.repos);
-            blog = (TextView) itemView.findViewById(R.id.blog);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

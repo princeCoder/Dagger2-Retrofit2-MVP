@@ -10,6 +10,8 @@ import vml.prinzly.com.rxretrofitdemo.model.Github;
 public class MainPresenterImpl implements MainPresenter, MainInteractor.OnFetchCompletedListener{
 
     private MainView mainView;
+
+
     private MainInteractor mainInteractor;
 
     @Inject

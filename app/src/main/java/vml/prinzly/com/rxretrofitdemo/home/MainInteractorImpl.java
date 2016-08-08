@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import vml.prinzly.com.rxretrofitdemo.Data;
@@ -31,6 +32,7 @@ public class MainInteractorImpl implements MainInteractor {
             Observable<Github> service = githubService.getUser(login);
 
             //Subscriber
+            Subscription subscription=
             service.subscribeOn(Schedulers.newThread()) // Any subscriber will run on a different thread
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<Github>() { // We define the subscriber to this observable Github object

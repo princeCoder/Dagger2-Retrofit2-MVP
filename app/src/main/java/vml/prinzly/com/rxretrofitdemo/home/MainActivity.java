@@ -18,7 +18,7 @@ import vml.prinzly.com.rxretrofitdemo.adapter.CardAdapter;
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject
-    MainPresenter mainPresenter;
+    MainPresenterImpl mainPresenter;
 
     //Adapter
     CardAdapter mCardAdapter;
@@ -74,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //Avoid the memory leak
-        mainPresenter.setView(null);
+        mainPresenter.onDestroy();
     }
 
     @Override

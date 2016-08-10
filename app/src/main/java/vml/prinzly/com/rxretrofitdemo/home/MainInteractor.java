@@ -1,5 +1,6 @@
 package vml.prinzly.com.rxretrofitdemo.home;
 
+import rx.Subscription;
 import vml.prinzly.com.rxretrofitdemo.model.Github;
 
 /**
@@ -10,6 +11,8 @@ public interface MainInteractor {
 
     //Handle the returned value
     interface OnFetchCompletedListener {
-         void onFetchData(Github github );
+        void onFetchData(Github github );
+        void setSubscription(Subscription subscription);
+
     }
 }

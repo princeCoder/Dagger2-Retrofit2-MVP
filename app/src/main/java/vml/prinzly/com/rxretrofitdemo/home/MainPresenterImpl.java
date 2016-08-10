@@ -1,7 +1,7 @@
 package vml.prinzly.com.rxretrofitdemo.home;
 
-import javax.inject.Inject;
-
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 import vml.prinzly.com.rxretrofitdemo.model.Github;
 
 /**
@@ -11,12 +11,14 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnFetchC
 
     private MainView mainView;
 
+    private MainInteractorImpl mainInteractor;
 
-    private MainInteractor mainInteractor;
+    private Subscription subscription;
 
-    @Inject
-    public MainPresenterImpl(MainInteractor mainInteractor) {
+
+    public MainPresenterImpl(MainInteractorImpl mainInteractor) {
         this.mainInteractor = mainInteractor;
+        subscription=new CompositeSubscription();
     }
 
     @Override
@@ -37,9 +39,20 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnFetchC
     }
 
     @Override
+    public void onDestroy() {
+        //Avoid the memory leak
+        subscription.unsubscribe();
+        setView(null);
+    }
+
+    @Override
+    public void setSubscription(Subscription subscription) {
+        this.subscription=subscription;
+    }
+
+    @Override
     public void onFetchData(Github github) {
         //We populate the recycler View
         mainView.getAdapter().addData(github);
     }
-
 }

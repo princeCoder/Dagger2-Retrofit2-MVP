@@ -2,11 +2,8 @@ package vml.prinzly.com.rxretrofitdemo.home;
 
 import android.util.Log;
 
-import javax.inject.Inject;
-
 import rx.Observable;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import vml.prinzly.com.rxretrofitdemo.Data;
@@ -18,12 +15,13 @@ import vml.prinzly.com.rxretrofitdemo.service.GithubService;
  */
 public class MainInteractorImpl implements MainInteractor {
 
-    @Inject
+    //My Github service
     GithubService githubService;
 
-    @Inject
-    public MainInteractorImpl() {
+    public MainInteractorImpl(GithubService service) {
+        this.githubService=service;
     }
+
 
     @Override
     public void fetchData(final OnFetchCompletedListener listener) {
@@ -32,8 +30,7 @@ public class MainInteractorImpl implements MainInteractor {
             Observable<Github> service = githubService.getUser(login);
 
             //Subscriber
-            Subscription subscription=
-            service.subscribeOn(Schedulers.newThread()) // Any subscriber will run on a different thread
+            listener.setSubscription(service.subscribeOn(Schedulers.newThread()) // Any subscriber will run on a different thread
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<Github>() { // We define the subscriber to this observable Github object
                         @Override
@@ -50,9 +47,7 @@ public class MainInteractorImpl implements MainInteractor {
                         public void onNext(Github github) {
                             listener.onFetchData(github);
                         }
-                    });
-
-
+                    }));
         }
     }
 }

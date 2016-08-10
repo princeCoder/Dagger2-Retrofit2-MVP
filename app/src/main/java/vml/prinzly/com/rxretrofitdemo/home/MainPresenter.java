@@ -14,4 +14,6 @@ public interface MainPresenter {
     //Clear the RecyclerView
     void  clear();
 
+    void onDestroy();
+
 }

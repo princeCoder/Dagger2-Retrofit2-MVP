@@ -18,6 +18,7 @@ import vml.prinzly.com.rxretrofitdemo.model.Github;
  * Created by prinzlyngotoum on 8/3/16.
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+
     List<Github> mItems;
 
     public CardAdapter() {
@@ -29,6 +30,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         mItems.add(github);
         notifyDataSetChanged();
     }
+
+    public void setItems(ArrayList<Github> list){
+        mItems=list;
+        notifyDataSetChanged();
+    }
+
+    public List<Github> getItems() {
+        return mItems;
+    }
+
 
     public void clear() {
         mItems.clear();

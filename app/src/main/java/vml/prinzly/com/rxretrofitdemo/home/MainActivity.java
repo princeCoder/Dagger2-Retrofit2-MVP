@@ -18,7 +18,8 @@ import vml.prinzly.com.rxretrofitdemo.adapter.CardAdapter;
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject
-    MainPresenterImpl mainPresenter;
+//    MainPresenterImpl mainPresenter;
+    MainPresenter mainPresenter;
 
     //Adapter
     CardAdapter mCardAdapter;
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         ((App)getApplication()).getAppComponent().inject(this);
         mainPresenter.setView(this);
     }
-
 
     @OnClick(R.id.button_fetch)
     public void onFetchClick() {

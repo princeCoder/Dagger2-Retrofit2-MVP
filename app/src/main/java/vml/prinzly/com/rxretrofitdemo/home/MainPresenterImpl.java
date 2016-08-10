@@ -11,12 +11,13 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnFetchC
 
     private MainView mainView;
 
-    private MainInteractorImpl mainInteractor;
+//    private MainInteractorImpl mainInteractor;
+    private MainInteractor mainInteractor;
 
     private Subscription subscription;
 
 
-    public MainPresenterImpl(MainInteractorImpl mainInteractor) {
+    public MainPresenterImpl(MainInteractor mainInteractor) {
         this.mainInteractor = mainInteractor;
         subscription=new CompositeSubscription();
     }

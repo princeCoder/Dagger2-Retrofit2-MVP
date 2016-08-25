@@ -17,7 +17,7 @@ import vml.prinzly.com.rxretrofitdemo.model.Github;
 /**
  * Created by prinzlyngotoum on 8/3/16.
  */
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.GithubHolder> {
 
     List<Github> mItems;
 
@@ -47,19 +47,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public GithubHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recycler_view, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+        GithubHolder viewHolder = new GithubHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Github github = mItems.get(i);
-        viewHolder.login.setText(github.getLogin());
-        viewHolder.repos.setText("repos: " + github.getPublicRepos());
-        viewHolder.blog.setText("blog: " + github.getBlog());
+    public void onBindViewHolder(GithubHolder holders, int position) {
+        Github github = mItems.get(position);
+        GithubHolder holder=(GithubHolder)holders;
+        holder.setFields(github);
     }
 
     @Override
@@ -67,14 +66,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         return mItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class GithubHolder extends RecyclerView.ViewHolder {
+
+        private final GithubFieldBinder githubFieldBinder;
+
         @BindView(R.id.login) TextView login;
         @BindView(R.id.repos) TextView repos;
         @BindView(R.id.blog) TextView blog;
 
-        public ViewHolder(View itemView) {
+        public GithubHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            githubFieldBinder=new GithubFieldBinder(this);
+        }
+
+        public void setFields(Github github){
+            githubFieldBinder.setField(github);
         }
     }
 }

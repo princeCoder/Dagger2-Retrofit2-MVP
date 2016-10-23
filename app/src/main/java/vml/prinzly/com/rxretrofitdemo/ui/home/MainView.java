@@ -1,6 +1,6 @@
-package vml.prinzly.com.rxretrofitdemo.home;
+package vml.prinzly.com.rxretrofitdemo.ui.home;
 
-import vml.prinzly.com.rxretrofitdemo.adapter.CardAdapter;
+import vml.prinzly.com.rxretrofitdemo.ui.adapter.CardAdapter;
 
 /**
  * Created by prinzlyngotoum on 8/5/16.

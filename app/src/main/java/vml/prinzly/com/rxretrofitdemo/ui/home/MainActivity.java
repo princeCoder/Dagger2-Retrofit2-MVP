@@ -1,4 +1,4 @@
-package vml.prinzly.com.rxretrofitdemo.home;
+package vml.prinzly.com.rxretrofitdemo.ui.home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +13,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vml.prinzly.com.rxretrofitdemo.App;
 import vml.prinzly.com.rxretrofitdemo.R;
-import vml.prinzly.com.rxretrofitdemo.adapter.CardAdapter;
+import vml.prinzly.com.rxretrofitdemo.ui.adapter.CardAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject
-//    MainPresenterImpl mainPresenter;
     MainPresenter mainPresenter;
 
     //Adapter
@@ -38,12 +37,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        App.of().component().inject(this);
+//        ((App)getApplication()).getAppComponent().inject(this);
+        mainPresenter.setView(this);
+
         ButterKnife.bind(this);
-
-        /**
-         * Set up Android CardView/RecycleView
-         */
-
         init();
     }
 
@@ -55,9 +53,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mCardAdapter= new CardAdapter();
         mRecyclerView.setAdapter(mCardAdapter);
-
-        ((App)getApplication()).getAppComponent().inject(this);
-        mainPresenter.setView(this);
     }
 
     @OnClick(R.id.button_fetch)

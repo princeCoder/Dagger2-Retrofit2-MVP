@@ -3,7 +3,7 @@ package vml.prinzly.com.rxretrofitdemo.service;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
-import vml.prinzly.com.rxretrofitdemo.model.Github;
+import vml.prinzly.com.rxretrofitdemo.domain.Github;
 
 /**
  * Created by prinzlyngotoum on 8/3/16.

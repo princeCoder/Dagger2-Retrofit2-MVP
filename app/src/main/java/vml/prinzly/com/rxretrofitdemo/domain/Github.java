@@ -1,4 +1,4 @@
-package vml.prinzly.com.rxretrofitdemo.model;
+package vml.prinzly.com.rxretrofitdemo.domain;
 
 import android.os.Parcel;
 import android.os.Parcelable;

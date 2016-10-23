@@ -1,6 +1,6 @@
-package vml.prinzly.com.rxretrofitdemo.adapter;
+package vml.prinzly.com.rxretrofitdemo.ui.adapter;
 
-import vml.prinzly.com.rxretrofitdemo.model.Github;
+import vml.prinzly.com.rxretrofitdemo.domain.Github;
 
 /**
  * Created by prinzlyngotoum on 8/25/16.

@@ -1,34 +1,48 @@
 package vml.prinzly.com.rxretrofitdemo;
 
 import android.app.Application;
-
-import vml.prinzly.com.rxretrofitdemo.di.AppComponent;
-import vml.prinzly.com.rxretrofitdemo.di.AppModule;
-import vml.prinzly.com.rxretrofitdemo.di.DaggerAppComponent;
-import vml.prinzly.com.rxretrofitdemo.di.MainModule;
-import vml.prinzly.com.rxretrofitdemo.di.ServiceModule;
-import vml.prinzly.com.rxretrofitdemo.service.GithubService;
+import android.content.Context;
 
 /**
  * Created by prinzlyngotoum on 8/5/16.
  */
 public class App extends Application {
 
-    private static AppComponent appComponent;
+    private AppComponent component;
+
+    private static App instance;
+
+    public App() {
+        instance = this;
+    }
+
+    public static Context getContext() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .serviceModule(new ServiceModule(GithubService.SERVICE_ENDPOINT))
-                .mainModule(new MainModule())
-                .build();
+        component = component();
     }
 
+    public static App of() {
+        return (App) getContext();
+    }
 
+    public AppComponent component() {
+        if (component == null) buildComponent();
+        return component;
+    }
+
+    //We can call this method anytime we want to rebuild de Dagger dependency graph
     public  AppComponent getAppComponent() {
-        return appComponent;
+        if (component == null) buildComponent();
+        return component;
+    }
+
+    public void buildComponent() {
+        component = AppComponentBuilder.build();
     }
 
 }

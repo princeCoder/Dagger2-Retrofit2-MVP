@@ -1,4 +1,4 @@
-package vml.prinzly.com.rxretrofitdemo.adapter;
+package vml.prinzly.com.rxretrofitdemo.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import vml.prinzly.com.rxretrofitdemo.R;
-import vml.prinzly.com.rxretrofitdemo.model.Github;
+import vml.prinzly.com.rxretrofitdemo.domain.Github;
 
 /**
  * Created by prinzlyngotoum on 8/3/16.
@@ -31,7 +31,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.GithubHolder> 
         notifyDataSetChanged();
     }
 
-    public void setItems(ArrayList<Github> list){
+    public void setItems(List<Github> list){
         mItems=list;
         notifyDataSetChanged();
     }
@@ -84,4 +84,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.GithubHolder> 
             githubFieldBinder.setField(github);
         }
     }
+
 }

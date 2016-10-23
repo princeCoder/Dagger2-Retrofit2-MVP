@@ -1,4 +1,4 @@
-package vml.prinzly.com.rxretrofitdemo.adapter;
+package vml.prinzly.com.rxretrofitdemo.ui.adapter;
 
 import android.view.View;
 import android.widget.ImageView;
